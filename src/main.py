@@ -5,6 +5,7 @@ HPIT4008 Big Data Analytics Project
 
 import pandas as pd
 from clean_data import clean_data
+from plot_figures import plot_top_countries
 
 
 def check_missing_data(df):
@@ -33,6 +34,8 @@ def main():
 
     cleaned_data = clean_data(df)
     save_data(cleaned_data, cleaned_data_path)
+
+    plot_top_countries(df)
 
 
 if __name__ == "__main__":

@@ -5,11 +5,11 @@ def analyze_countries(df, top_n=10):
     """
 
     countries = df["country"]
-    country_counts = countries.value_counts().head(top_n)
+    top_countries = countries.value_counts().head(top_n)
 
     print(f"\nTop {top_n} Countries:")
 
-    for i, (country, count) in enumerate(country_counts.items(), 1):
+    for i, (country, count) in enumerate(top_countries.items(), 1):
         print(f"  {i}. {country}: {count}")
 
-    return country_counts
+    return top_countries
