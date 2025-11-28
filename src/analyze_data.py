@@ -44,3 +44,18 @@ def analyze_ratings(df):
         print(f"  {rating}: {count}")
 
     return ratings
+
+
+def analyze_content_type(df):
+    """
+    We will analyze the distribution of content types (Movies vs TV Shows) on Netflix.
+    """
+
+    content_type = df["type"].value_counts()
+
+    print("\nContent Type Distribution:")
+
+    for content, count in content_type.items():
+        print(f"  {content}: {count}")
+
+    return content_type

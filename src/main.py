@@ -4,8 +4,8 @@ HPIT4008 Big Data Analytics Project
 """
 
 import pandas as pd
-from clean_data import clean_data
 import plot_figures as plot
+from clean_data import clean_data
 
 
 def check_missing_data(df):
@@ -38,6 +38,7 @@ def main():
     plot.plot_top_countries(cleaned_data)
     plot.plot_genre_distribution(cleaned_data)
     plot.plot_rating_distribution(cleaned_data)
+    plot.plot_content_type(cleaned_data)
 
 
 if __name__ == "__main__":

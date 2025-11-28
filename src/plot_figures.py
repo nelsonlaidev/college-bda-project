@@ -107,3 +107,34 @@ def plot_rating_distribution(df):
     # Show plot
     plt.tight_layout()
     plt.show()
+
+
+def plot_content_type(df):
+    """
+    Plot content type distribution
+    See: analyze_content_type in analyze_data.py
+    """
+    _, ax = plt.subplots(figsize=(10, 6))
+
+    types = analyze.analyze_content_type(df)
+
+    # Bar plot
+    ax.bar(types.index, types.values)
+    ax.set_title("Movies vs TV Shows on Netflix")
+
+    # Y axis
+    ax.set_ylabel("Number of Titles")
+
+    # X axis
+    ax.set_xlabel("Content Type")
+
+    # Add value labels on bars
+    for i, (_, val) in enumerate(types.items()):
+        ax.text(i, val + 100, str(val), ha="center", va="bottom")
+
+    # Accessibility
+    ax.grid(axis="y", alpha=0.3, linestyle="--")
+
+    # Show plot
+    plt.tight_layout()
+    plt.show()
