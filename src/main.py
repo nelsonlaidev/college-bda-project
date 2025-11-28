@@ -35,8 +35,9 @@ def main():
     cleaned_data = clean_data(df)
     save_data(cleaned_data, cleaned_data_path)
 
-    plot.plot_top_countries(df)
-    plot.plot_genre_distribution(df)
+    plot.plot_top_countries(cleaned_data)
+    plot.plot_genre_distribution(cleaned_data)
+    plot.plot_rating_distribution(cleaned_data)
 
 
 if __name__ == "__main__":

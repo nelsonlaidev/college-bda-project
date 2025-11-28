@@ -29,3 +29,18 @@ def analyze_genres(df, top_n=15):
         print(f"  {i}. {genre}: {count}")
 
     return top_genres
+
+
+def analyze_ratings(df):
+    """
+    We will analyze the distribution of content ratings on Netflix.
+    """
+
+    ratings = df["rating"].value_counts()
+
+    print("\nContent Ratings Distribution:")
+
+    for rating, count in ratings.items():
+        print(f"  {rating}: {count}")
+
+    return ratings

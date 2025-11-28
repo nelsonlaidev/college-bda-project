@@ -1,3 +1,25 @@
+def categorize_rating(rating):
+    """
+    Categorize ratings into age groups
+    Read: https://rating-system.fandom.com/wiki/Netflix
+    """
+    kids_ratings = ["TV-Y", "TV-PG", "TV-G", "TV-Y7", "TV-Y7-FV", "PG", "G"]
+    teens_ratings = ["TV-14", "PG-13"]
+    mature_ratings = ["TV-MA", "R", "NC-17"]
+    unrated = ["UR", "NR"]
+
+    if rating in kids_ratings:
+        return "Kids"
+    elif rating in teens_ratings:
+        return "Teens"
+    elif rating in mature_ratings:
+        return "Adults"
+    elif rating in unrated:
+        return "Unrated"
+    else:
+        return "Other"
+
+
 def clean_data(df):
     """
     We will clean the data by:
@@ -12,8 +34,8 @@ def clean_data(df):
         - Date added: Remove rows
         - Rating: Remove rows
         - Duration: Remove rows
-    - Categorize ratings into age groups
-      Read: https://rating-system.fandom.com/wiki/Netflix
+    - Categorize ratings
+      See: categorize_rating function
 
     Notes:
     - inplace means the operation will modify the original dataframe directly
@@ -37,5 +59,7 @@ def clean_data(df):
     cleaned_df.dropna(subset=["rating"], inplace=True)
     # Duration
     cleaned_df.dropna(subset=["duration"], inplace=True)
+
+    cleaned_df["rating_category"] = cleaned_df["rating"].apply(categorize_rating)
 
     return cleaned_df

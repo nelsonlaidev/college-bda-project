@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from analyze_data import analyze_countries, analyze_genres
+import analyze_data as analyze
 
 
 def plot_top_countries(df, top_n=10):
@@ -11,7 +11,7 @@ def plot_top_countries(df, top_n=10):
     _, ax = plt.subplots(figsize=(12, 8))
 
     # Get top countries data
-    top_countries = analyze_countries(df, top_n)
+    top_countries = analyze.analyze_countries(df, top_n)
 
     # Horizontal bar plot
     ax.barh(range(len(top_countries)), top_countries.values)
@@ -50,7 +50,7 @@ def plot_genre_distribution(df, top_n=15):
     _, ax = plt.subplots(figsize=(14, 8))
 
     # Get top genres data
-    top_genres = analyze_genres(df, top_n)
+    top_genres = analyze.analyze_genres(df, top_n)
 
     # Bar plot
     ax.bar(range(len(top_genres)), top_genres.values)
@@ -69,6 +69,39 @@ def plot_genre_distribution(df, top_n=15):
 
     # Accessibility
     ax.grid(axis="x", alpha=0.3, linestyle="--")
+
+    # Show plot
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_rating_distribution(df):
+    """
+    Plot distribution of content ratings on Netflix
+    See: analyze_ratings in analyze_data.py
+
+    Notes:
+    - autopct: a function to display percentage values on the slices of a pie chart
+    """
+
+    _, ax = plt.subplots(1, 2, figsize=(16, 7))
+
+    # Get ratings data
+    ratings = analyze.analyze_ratings(df)
+
+    # Bar plot
+    ax[0].pie(
+        ratings.values,
+        labels=None,
+        autopct=lambda p: f"{p:.1f}%" if p > 2 else "",  # show % only if >2%
+    )
+    ax[0].legend(ratings.index, loc="center left", bbox_to_anchor=(1, 0.5))
+    ax[0].set_title("Content Ratings Distribution")
+
+    category_counts = df["rating_category"].value_counts()
+
+    ax[1].pie(category_counts.values, labels=category_counts.index, autopct="%1.1f%%")
+    ax[1].set_title("Rating Category Distribution")
 
     # Show plot
     plt.tight_layout()
