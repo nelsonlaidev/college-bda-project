@@ -89,7 +89,7 @@ def plot_rating_distribution(df):
     # Get ratings data
     ratings = analyze.analyze_ratings(df)
 
-    # Bar plot
+    # Pie plot
     ax[0].pie(
         ratings.values,
         labels=None,
@@ -100,6 +100,7 @@ def plot_rating_distribution(df):
 
     category_counts = df["rating_category"].value_counts()
 
+    # Pie plot
     ax[1].pie(category_counts.values, labels=category_counts.index, autopct="%1.1f%%")
     ax[1].set_title("Rating Category Distribution")
 
