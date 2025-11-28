@@ -71,3 +71,21 @@ def analyze_yearly_trend(df):
     print(yearly_data)
 
     return yearly_data
+
+
+def analyze_movie_duration(df):
+    """
+    Analyze the distribution of movie durations on Netflix.
+    """
+
+    movies = df[df["type"] == "Movie"]
+
+    durations = movies["duration"].str.replace(" min", "").astype(int)
+
+    print("\nMovie Duration Analysis:")
+    print(f"  Mean: {durations.mean():.2f} minutes")
+    print(f"  Median: {durations.median():.2f} minutes")
+    print(f"  Min: {durations.min():.2f} minutes")
+    print(f"  Max: {durations.max():.2f} minutes")
+
+    return durations

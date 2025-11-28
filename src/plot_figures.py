@@ -167,3 +167,52 @@ def plot_yearly_trend(df):
     # Show plot
     plt.tight_layout()
     plt.show()
+
+
+def plot_movie_duration(df):
+    """
+    Plot distribution of movie durations on Netflix
+    See: analyze_movie_duration in analyze_data.py
+    """
+
+    _, ax = plt.subplots(figsize=(12, 6))
+
+    durations = analyze.analyze_movie_duration(df)
+
+    # Histogram plot
+    ax.hist(durations, bins=30, edgecolor="black")
+
+    # Add mean and median lines
+    mean_duration = durations.mean()
+    median_duration = durations.median()
+
+    ax.axvline(
+        mean_duration,
+        color="blue",
+        linestyle="--",
+        label=f"Mean: {mean_duration:.0f} min",
+    )
+    ax.axvline(
+        median_duration,
+        color="red",
+        linestyle="--",
+        label=f"Median: {median_duration:.0f} min",
+    )
+
+    ax.set_title("Distribution of Movie Durations on Netflix")
+
+    # Y axis
+    ax.set_ylabel("Number of Movies")
+
+    # X axis
+    ax.set_xlabel("Duration (minutes)")
+
+    # Accessibility
+    ax.grid(axis="y", alpha=0.3, linestyle="--")
+
+    # Show legend
+    ax.legend()
+
+    # Show plot
+    plt.tight_layout()
+    plt.show()
