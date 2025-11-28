@@ -52,7 +52,7 @@ def plot_genre_distribution(df, top_n=15):
     # Get top genres data
     top_genres = analyze_genres(df, top_n)
 
-    # Horizontal bar plot
+    # Bar plot
     ax.bar(range(len(top_genres)), top_genres.values)
 
     # Main title
