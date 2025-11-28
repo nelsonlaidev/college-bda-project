@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from analyze_data import analyze_countries
+from analyze_data import analyze_countries, analyze_genres
 
 
 def plot_top_countries(df, top_n=10):
@@ -23,10 +23,10 @@ def plot_top_countries(df, top_n=10):
     ax.set_yticks(range(len(top_countries)))
     ax.set_yticklabels(top_countries.index)
     ax.invert_yaxis()
+    ax.set_ylabel("Country")
 
     # X axis
     ax.set_xlabel("Number of Titles")
-    ax.set_ylabel("Country")
 
     # Accessibility
     ax.grid(axis="x", alpha=0.3, linestyle="--")
@@ -37,4 +37,39 @@ def plot_top_countries(df, top_n=10):
         ax.text(val + 20, i, str(val), va="center")
 
     # Show plot
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_genre_distribution(df, top_n=15):
+    """
+    Plot top genres
+    See: analyze_genres in analyze_data.py
+    """
+
+    _, ax = plt.subplots(figsize=(14, 8))
+
+    # Get top genres data
+    top_genres = analyze_genres(df, top_n)
+
+    # Horizontal bar plot
+    ax.bar(range(len(top_genres)), top_genres.values)
+
+    # Main title
+    ax.set_title(f"Top {top_n} Genres on Netflix")
+
+    # Y axis
+    ax.set_ylabel("Number of Titles")
+
+    # X axis
+    ax.set_xticks(range(len(top_genres)))
+    # Rotate x labels for better readability
+    ax.set_xticklabels(top_genres.index, rotation=45, ha="right")
+    ax.set_xlabel("Genre")
+
+    # Accessibility
+    ax.grid(axis="x", alpha=0.3, linestyle="--")
+
+    # Show plot
+    plt.tight_layout()
     plt.show()

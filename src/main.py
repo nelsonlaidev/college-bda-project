@@ -5,7 +5,7 @@ HPIT4008 Big Data Analytics Project
 
 import pandas as pd
 from clean_data import clean_data
-from plot_figures import plot_top_countries
+import plot_figures as plot
 
 
 def check_missing_data(df):
@@ -35,7 +35,8 @@ def main():
     cleaned_data = clean_data(df)
     save_data(cleaned_data, cleaned_data_path)
 
-    plot_top_countries(df)
+    plot.plot_top_countries(df)
+    plot.plot_genre_distribution(df)
 
 
 if __name__ == "__main__":
