@@ -35,12 +35,12 @@ def main():
     cleaned_data = clean_data(df)
     save_data(cleaned_data, cleaned_data_path)
 
-    # plot.plot_top_countries(cleaned_data)
-    # plot.plot_genre_distribution(cleaned_data)
-    # plot.plot_rating_distribution(cleaned_data)
-    # plot.plot_content_type(cleaned_data)
-    # plot.plot_yearly_trend(cleaned_data)
-    # plot.plot_movie_duration(cleaned_data)
+    plot.plot_top_countries(cleaned_data)
+    plot.plot_genre_distribution(cleaned_data)
+    plot.plot_rating_distribution(cleaned_data)
+    plot.plot_content_type(cleaned_data)
+    plot.plot_yearly_trend(cleaned_data)
+    plot.plot_movie_duration(cleaned_data)
     plot.plot_monthly_heatmap(cleaned_data)
 
 
