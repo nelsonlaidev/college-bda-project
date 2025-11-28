@@ -1,6 +1,15 @@
 import matplotlib.pyplot as plt
 import analyze_data as analyze
 import seaborn as sns
+import os
+
+
+def ensure_output_dir():
+    """Ensure the outputs directory exists"""
+    output_dir = "outputs"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    return output_dir
 
 
 def plot_top_countries(df, top_n=10):
@@ -37,8 +46,10 @@ def plot_top_countries(df, top_n=10):
         # Add some padding between the bar and the text (20 units)
         ax.text(val + 20, i, str(val), va="center")
 
-    # Show plot
+    # Save and show plot
     plt.tight_layout()
+    output_dir = ensure_output_dir()
+    plt.savefig(f"{output_dir}/top_countries.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -71,8 +82,10 @@ def plot_genre_distribution(df, top_n=15):
     # Accessibility
     ax.grid(axis="x", alpha=0.3, linestyle="--")
 
-    # Show plot
+    # Save and show plot
     plt.tight_layout()
+    output_dir = ensure_output_dir()
+    plt.savefig(f"{output_dir}/genre_distribution.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -105,8 +118,10 @@ def plot_rating_distribution(df):
     ax[1].pie(category_counts.values, labels=category_counts.index, autopct="%1.1f%%")
     ax[1].set_title("Rating Category Distribution")
 
-    # Show plot
+    # Save and show plot
     plt.tight_layout()
+    output_dir = ensure_output_dir()
+    plt.savefig(f"{output_dir}/rating_distribution.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -136,8 +151,10 @@ def plot_content_type(df):
     # Accessibility
     ax.grid(axis="y", alpha=0.3, linestyle="--")
 
-    # Show plot
+    # Save and show plot
     plt.tight_layout()
+    output_dir = ensure_output_dir()
+    plt.savefig(f"{output_dir}/content_type.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -165,8 +182,10 @@ def plot_yearly_trend(df):
     # Accessibility
     ax.grid(axis="x", alpha=0.3, linestyle="--")
 
-    # Show plot
+    # Save and show plot
     plt.tight_layout()
+    output_dir = ensure_output_dir()
+    plt.savefig(f"{output_dir}/yearly_trend.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -214,8 +233,10 @@ def plot_movie_duration(df):
     # Show legend
     ax.legend()
 
-    # Show plot
+    # Save and show plot
     plt.tight_layout()
+    output_dir = ensure_output_dir()
+    plt.savefig(f"{output_dir}/movie_duration.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -268,6 +289,8 @@ def plot_monthly_heatmap(df):
         ]
     )
 
-    # Show plot
+    # Save and show plot
     plt.tight_layout()
+    output_dir = ensure_output_dir()
+    plt.savefig(f"{output_dir}/monthly_heatmap.png", dpi=300, bbox_inches="tight")
     plt.show()
