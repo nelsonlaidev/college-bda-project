@@ -1,6 +1,6 @@
 def analyze_countries(df, top_n=10):
     """
-    We will analyze the top n (default is 10) countries producing
+    Analyze the top n (default is 10) countries producing
     content on Netflix.
     """
 
@@ -17,7 +17,7 @@ def analyze_countries(df, top_n=10):
 
 def analyze_genres(df, top_n=15):
     """
-    We will analyze the top n (default is 15) genres on Netflix.
+    Analyze the top n (default is 15) genres on Netflix.
     """
 
     genres = df["listed_in"].str.split(", ").explode()
@@ -33,7 +33,7 @@ def analyze_genres(df, top_n=15):
 
 def analyze_ratings(df):
     """
-    We will analyze the distribution of content ratings on Netflix.
+    Analyze the distribution of content ratings on Netflix.
     """
 
     ratings = df["rating"].value_counts()
@@ -48,7 +48,7 @@ def analyze_ratings(df):
 
 def analyze_content_type(df):
     """
-    We will analyze the distribution of content types (Movies vs TV Shows) on Netflix.
+    Analyze the distribution of content types (Movies vs TV Shows) on Netflix.
     """
 
     content_type = df["type"].value_counts()
@@ -59,3 +59,15 @@ def analyze_content_type(df):
         print(f"  {content}: {count}")
 
     return content_type
+
+
+def analyze_yearly_trend(df):
+    """
+    Analyze the yearly trend of content additions on Netflix.
+    """
+    yearly_data = df.groupby(["year_added", "type"]).size().unstack(fill_value=0)
+
+    print("\nYearly Content Addition Trend:")
+    print(yearly_data)
+
+    return yearly_data

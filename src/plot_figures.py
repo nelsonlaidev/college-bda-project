@@ -138,3 +138,32 @@ def plot_content_type(df):
     # Show plot
     plt.tight_layout()
     plt.show()
+
+
+def plot_yearly_trend(df):
+    """
+    Plot yearly trend of content additions on Netflix
+    See: analyze_yearly_trend in analyze_data.py
+    """
+
+    _, ax = plt.subplots(figsize=(14, 6))
+
+    yearly_data = analyze.analyze_yearly_trend(df)
+
+    # Line plot
+    yearly_data.plot(kind="line", ax=ax, marker="o")
+
+    ax.set_title("Netflix Content Growth Over Years")
+
+    # Y axis
+    ax.set_ylabel("Number of Titles Added")
+
+    # X axis
+    ax.set_xlabel("Year")
+
+    # Accessibility
+    ax.grid(axis="x", alpha=0.3, linestyle="--")
+
+    # Show plot
+    plt.tight_layout()
+    plt.show()
