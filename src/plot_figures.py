@@ -82,6 +82,10 @@ def plot_genre_distribution(df, top_n=15):
     # Accessibility
     ax.grid(axis="x", alpha=0.3, linestyle="--")
 
+    # Add value labels on bars
+    for i, val in enumerate(top_genres.values):
+        ax.text(i, val + 50, str(val), ha="center", va="bottom")
+
     # Save and show plot
     plt.tight_layout()
     output_dir = ensure_output_dir()
