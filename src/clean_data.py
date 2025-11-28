@@ -2,6 +2,8 @@
 See docs/Cleaning_Data.md for more details
 """
 
+import pandas as pd
+
 
 def categorize_rating(rating):
     kids_ratings = ["TV-Y", "TV-PG", "TV-G", "TV-Y7", "TV-Y7-FV", "PG", "G"]
@@ -46,5 +48,10 @@ def clean_data(df):
     cleaned_df.dropna(subset=["duration"], inplace=True)
 
     cleaned_df["rating_category"] = cleaned_df["rating"].apply(categorize_rating)
+
+    cleaned_df["date_added"] = pd.to_datetime(cleaned_df["date_added"].str.strip())
+    cleaned_df["year_added"] = cleaned_df["date_added"].dt.year
+    cleaned_df["month_added"] = cleaned_df["date_added"].dt.month
+    cleaned_df["month_name"] = cleaned_df["date_added"].dt.month_name()
 
     return cleaned_df

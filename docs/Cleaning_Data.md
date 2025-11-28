@@ -43,3 +43,12 @@ Based on [Netflix Rating System](https://rating-system.fandom.com/wiki/Netflix),
 - Teens: TV-14, PG-13
 - Adults: TV-MA, R, NC-17
 - Unrated: UR, NR
+
+## Date Processing
+
+The `date_added` column is processed to extract additional time-based features:
+
+- Convert `date_added` to datetime format
+- Extract `year_added` from the date
+- Extract `month_added` from the date
+- Extract `month_name` from the date for better readability
