@@ -40,7 +40,8 @@ def main():
     # plot.plot_rating_distribution(cleaned_data)
     # plot.plot_content_type(cleaned_data)
     # plot.plot_yearly_trend(cleaned_data)
-    plot.plot_movie_duration(cleaned_data)
+    # plot.plot_movie_duration(cleaned_data)
+    plot.plot_monthly_heatmap(cleaned_data)
 
 
 if __name__ == "__main__":

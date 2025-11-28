@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import analyze_data as analyze
+import seaborn as sns
 
 
 def plot_top_countries(df, top_n=10):
@@ -212,6 +213,60 @@ def plot_movie_duration(df):
 
     # Show legend
     ax.legend()
+
+    # Show plot
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_monthly_heatmap(df):
+    """
+    Plot heatmap of content additions by month and year on Netflix
+    """
+
+    _, ax = plt.subplots(figsize=(14, 8))
+
+    pivot_table = df.pivot_table(
+        values="show_id",
+        index="year_added",
+        columns="month_added",
+        aggfunc="count",
+        fill_value=0,
+    )
+
+    sns.heatmap(
+        pivot_table,
+        cmap="Reds",
+        annot=True,
+        fmt="g",
+        cbar_kws={"label": "Number of Titles"},
+        linewidths=0.5,
+        ax=ax,
+    )
+
+    ax.set_title("Netflix Content Additions by Month and Year")
+
+    # Y axis
+    ax.set_ylabel("Year")
+
+    # X axis
+    ax.set_xlabel("Month")
+    ax.set_xticklabels(
+        [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+        ]
+    )
 
     # Show plot
     plt.tight_layout()
