@@ -118,6 +118,7 @@ def plot_rating_distribution(df):
         ratings.values,
         labels=None,
         autopct=lambda p: f"{p:.1f}%" if p > 2 else "",  # show % only if >2%
+        colors=plt.cm.tab20.colors[: len(ratings)],
     )
     ax[0].legend(ratings.index, loc="center left", bbox_to_anchor=(1, 0.5))
     ax[0].set_title("Content Ratings Distribution")
