@@ -3,6 +3,12 @@ import analyze_data as analyze
 import seaborn as sns
 import os
 
+plt.rcParams["axes.titlesize"] = 18
+plt.rcParams["axes.labelsize"] = 14
+plt.rcParams["xtick.labelsize"] = 12
+plt.rcParams["ytick.labelsize"] = 12
+plt.rcParams["legend.fontsize"] = 12
+
 
 def ensure_output_dir():
     """Ensure the outputs directory exists"""
