@@ -24,28 +24,23 @@ def categorize_rating(rating):
 
 
 def clean_data(df):
-    """
-    - inplace means the operation will modify the original dataframe directly
-    """
-
     # Copy the original dataframe
     cleaned_df = df.copy()
 
     # Remove duplicate rows
-    cleaned_df.drop_duplicates(inplace=True)
+    cleaned_df = cleaned_df.drop_duplicates()
 
     # Handle missing values
     # Director, Cast, Country
-    cleaned_df.fillna(
+    cleaned_df = cleaned_df.fillna(
         {"director": "Unknown", "cast": "No information", "country": "Unknown"},
-        inplace=True,
     )
     # Date added
-    cleaned_df.dropna(subset=["date_added"], inplace=True)
+    cleaned_df = cleaned_df.dropna(subset=["date_added"])
     # Rating
-    cleaned_df.dropna(subset=["rating"], inplace=True)
+    cleaned_df = cleaned_df.dropna(subset=["rating"])
     # Duration
-    cleaned_df.dropna(subset=["duration"], inplace=True)
+    cleaned_df = cleaned_df.dropna(subset=["duration"])
 
     cleaned_df["rating_category"] = cleaned_df["rating"].apply(categorize_rating)
 
