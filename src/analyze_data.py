@@ -4,8 +4,12 @@ def analyze_countries(df, top_n=10):
     content on Netflix.
     """
 
-    countries = df["country"]
-    top_countries = countries.value_counts().head(top_n)
+    country_counts = df["country"].value_counts()
+
+    if "Unknown" in country_counts:
+        country_counts = country_counts.drop("Unknown")
+
+    top_countries = country_counts.head(top_n)
 
     print(f"\nTop {top_n} Countries:")
 
