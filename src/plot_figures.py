@@ -26,6 +26,11 @@ def plot_top_countries(df, top_n=10):
 
     _, ax = plt.subplots(figsize=(12, 8))
 
+    country_counts = df["country"].value_counts()
+
+    if "Unknown" in country_counts:
+        country_counts = country_counts.drop("Unknown")
+
     # Get top countries data
     top_countries = analyze.analyze_countries(df, top_n)
 
