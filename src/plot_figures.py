@@ -113,15 +113,21 @@ def plot_rating_distribution(df):
     # Get ratings data
     ratings = analyze.analyze_ratings(df)
 
-    # Pie plot
-    ax[0].pie(
-        ratings.values,
-        labels=None,
-        autopct=lambda p: f"{p:.1f}%" if p > 2 else "",  # show % only if >2%
-        colors=plt.cm.tab20.colors[: len(ratings)],
+    # Horizontal bar plot
+    ax[0].barh(
+        range(len(ratings)), ratings.values, color=plt.cm.tab20.colors[: len(ratings)]
     )
-    ax[0].legend(ratings.index, loc="center left", bbox_to_anchor=(1, 0.5))
+    ax[0].set_yticks(range(len(ratings)))
+    ax[0].set_yticklabels(ratings.index)
+    ax[0].invert_yaxis()
+    ax[0].set_ylabel("Rating")
+    ax[0].set_xlabel("Number of Titles")
     ax[0].set_title("Content Ratings Distribution")
+    ax[0].grid(axis="x", alpha=0.3, linestyle="--")
+
+    # Add value labels on bars
+    for i, val in enumerate(ratings.values):
+        ax[0].text(val + 50, i, str(val), va="center")
 
     category_counts = df["rating_category"].value_counts()
 
